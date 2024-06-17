@@ -59,7 +59,7 @@
   padding: 10px;
   box-sizing: border-box;
 }
-.todo-item input[type="checkbox"] {
+.todo-item input[type='checkbox'] {
   margin: 0 12px 0 0;
   height: 16px;
   width: 16px;

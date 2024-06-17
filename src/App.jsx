@@ -1,7 +1,7 @@
-import "./App.css";
-import TodoTitle from "./components/TodoTitle";
-import TodoList from "./components/TodoList";
-import TodoInput from "./components/TodoInput";
+import './App.css';
+import TodoTitle from './components/TodoTitle';
+import TodoList from './components/TodoList';
+import TodoInput from './components/TodoInput';
 
 function App() {
   // 과제 1.1 todos state를 알맞은 초기값과 함께 정의해 주세요.
