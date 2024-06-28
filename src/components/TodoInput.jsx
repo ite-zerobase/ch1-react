@@ -1,5 +1,7 @@
-function TodoInput() {
+import { useState } from 'react';
+function TodoInput({todos, setTodos}) {
   // 과제 2.1 newTodoText state를 알맞은 초기값과 함께 정의해 주세요.
+  const [newTodoText, setNewTodoText] = useState("");
 
   function addTodo() {
     /* 과제 2.3 addTodo 함수를 구현해보세요.
@@ -10,13 +12,23 @@ function TodoInput() {
        - checked의 기본값은 false 입니다.
        - 새롭게 추가된 todo는 가장 위에 위치해야 합니다.
     */
+    const todo = {
+      id: "todo-" + Date.now(),
+      text: newTodoText,
+      checked: false
+    };
+
+    setTodos([todo, ...todos])
+
+    //입력창 초기화
+    setNewTodoText("")
   }
   return (
     <div className="todo-input">
       {/* 과제 2.2 input 요소를 newTodoText와 연동해보세요. */}
-      <input placeholder="할 일을 입력해보세요" />
+      <input placeholder="할 일을 입력해보세요" value={newTodoText} onChange={(e)=>setNewTodoText(e.target.value)}/>
       {/* 과제 2.3 button 요소를 클릭하면 addTodo 함수가 실행되도록 연동해보세요 */}
-      <button>저장</button>
+      <button onClick={() => addTodo()}>저장</button>
     </div>
   );
 }
