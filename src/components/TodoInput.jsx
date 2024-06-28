@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from "axios";
 
 function TodoInput(props) {
   // 과제 2.1 newTodoText state를 알맞은 초기값과 함께 정의해 주세요.
@@ -17,15 +18,37 @@ function TodoInput(props) {
        - checked의 기본값은 false 입니다.
        - 새롭게 추가된 todo는 가장 위에 위치해야 합니다.
     */
-      var todo = {
-        id : 'todo-' +  Date.now(),
-         text: newTodoText,
-         checked: false
-      }
 
-      let newArr = [...props.todos];
-      newArr.unshift(todo);
-      props.setTodos(newArr);
+      /*
+        let   : 객체를 덮어씌울 일은 let  
+              ex) let i = 0 ; let = 1;
+        const : 객체나 배열 같은 것은 재할당을 하지 않은 때 사용 
+              ex) const array= []; array.push(1);
+      */
+      
+      // props.setTodos([todo, ...props.todos]);
+
+      function loadTodos(){
+        axios.get('http://13.124.90.5:8080/todo').then((res)=>{
+          console.log('로드 완료', res.data);
+          props.setTodos(res.data);
+        }).catch((e)=>{
+          console.error(e);
+        });
+      }
+      
+      // post(url, body, parmas)
+      const data = {text:newTodoText};
+
+      axios.post('http://13.124.90.5:8080/todo', data)
+      .then((res)=>{
+        console.log("POST SUCCESS", res.data);
+        loadTodos();
+      })
+      .catch((e)=>{
+        console.error(e);
+      });
+      
       setNewTodoText("");
 
   }
