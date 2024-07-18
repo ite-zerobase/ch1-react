@@ -6,7 +6,7 @@ function UseEffectBadExample() {
   const run = () => {
     console.log('run');
   };
-  const person = { age: 27, name: 승열 };
+  const person = { age: 27, name: '승열' };
 
   // useEffect(() => {
   //   setCount((c) => c + 1);
